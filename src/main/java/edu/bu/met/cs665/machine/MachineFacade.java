@@ -56,8 +56,8 @@ public class MachineFacade {
   /**
    * Make coffee with ice or condiments.
    * 
-   * @param coffee The Coffee type of beverage
-   * @param isHot Is hot beverage or not
+   * @param coffee     The Coffee type of beverage
+   * @param isHot      Is hot beverage or not
    * @param condiments The condiments for the Coffee
    */
   public boolean makeCoffee(Coffee coffee, boolean isHot, String[] condiments) {
@@ -67,12 +67,12 @@ public class MachineFacade {
   /**
    * Make tea with ice or condiments.
    * 
-   * @param tea The Tea type of beverage
-   * @param isHot Is hot beverage or not
+   * @param tea        The Tea type of beverage
+   * @param isHot      Is hot beverage or not
    * @param condiments The condiments for the Tea
    */
   public boolean makeTea(Tea tea, boolean isHot, String[] condiments) {
-   return  makeBeverage(tea, isHot, condiments, new MakeTea());
+    return makeBeverage(tea, isHot, condiments, new MakeTea());
   }
 
   /**
@@ -80,7 +80,10 @@ public class MachineFacade {
    *
    * @param isHot make hot or cold beverage
    */
-  private boolean makeBeverage(Beverage beverage, boolean isHot, String[] condiments, MakeBeverage makeBeverage) {
+  private boolean makeBeverage(Beverage beverage,
+      boolean isHot,
+      String[] condiments,
+      MakeBeverage makeBeverage) {
     this.machine.prepareBeverage(beverage);
     this.machine.changeMakeBeverage(makeBeverage);
     boolean isSuccess = addCondiments(condiments);

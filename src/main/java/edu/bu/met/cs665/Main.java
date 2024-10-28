@@ -29,7 +29,10 @@ public class Main {
   public static void main(String[] args) {
     MachineFacade machine = new MachineFacade();
 
-    machine.makeCoffee(new LatteMacchiato(), false, new String[] { "Milk", "Sugar", "Sugar", "Sugar", "Sugar" });
+    machine.makeCoffee(
+        new LatteMacchiato(),
+        false,
+        new String[] { "Milk", "Sugar", "Sugar", "Sugar", "Sugar" });
   }
 
 }
