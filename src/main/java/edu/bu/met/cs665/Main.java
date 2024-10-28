@@ -8,10 +8,8 @@
 
 package edu.bu.met.cs665;
 
-import edu.bu.met.cs665.coffee.Americano;
 import edu.bu.met.cs665.coffee.LatteMacchiato;
 import edu.bu.met.cs665.machine.MachineFacade;
-import edu.bu.met.cs665.tea.BlackTea;
 
 /**
  * This is the Main class.
