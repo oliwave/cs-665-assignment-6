@@ -6,13 +6,50 @@
 | Course       | Fall     |
 | Assignment # |     6                       |
 
+# Assignment Overview
+Please add a paragraph or two overviewing the objectives of the assignment.
+
+> This assignment is dedicated to improve the assignment 1, the coffee machine, because I identify several defects 
+in design choices and is worthy to refactor to make the codebase more flexible and robust.
+
+# GitHub Repository Link:
+https://github.com/oliwave/cs-665-assignment-6
+
 # Implementation Description 
 
 For each assignment, please answer the following:
 
 ## Examine your code and identify opportunities for code improvement
 
+1. Underlying implementations are exposed to clients, and clients required to take a series of actions in order to make a beverage
+  - ![alt text](client.png)
+2. If we treat the `Machine` as the contract, API or interface whatever, it should be created as the Singleton pattern
+3. Based on the `Beverage` specific types like `Coffee` and `Tea`, we should make it as resilient as possible to choose which beverage and implementation details the `Machine` should make according to the client's requests
+
 ## Describe the changes made to the code
+
+- For the `1.`, I decided to create the `MachineFacade` class as the standard interface for clients to interact. That is, clients only need to know `makeCoffee` or `makeTea` without understanding the underlying details and managing the sequence of triggering different methods.
+  - ```java
+    MachineFacade machine = new MachineFacade();
+
+    machine.makeCoffee(
+      new LatteMacchiato(),
+      false,
+      new String[] { 
+        "Milk", "Sugar", "Sugar", "Sugar", "Sugar" 
+      });
+    ```
+- For the `2.`, thanks to the help of `MachineFacade`, the `Machine` as the specific implementation is fully decoupled with the Facade, which is just the API.
+  - From the clients perspective, the underlying code can create as many `Machine` as you wish but clients can only interact with them through the Facade.
+  - This significantly improves the simplicity by removing the interleaving interaction among internal objects and methods from the client code.
+- For the `3.`, I remove the specific implementation in the `Tea` and `Coffee` classes by abstracting the logic to the `MakeTea` and `MakeCoffee`
+  - In the `Beverage` class, we can determine the specific type of `Beverage` leveraging the polymorphism to swap the `makeBeverage` details at runtime
+    - ```java
+      public void changeMakeBeverage(MakeBeverage makeBeverage) {
+        this.makeBeverage = makeBeverage;
+      }
+      ```
+  - This is the implementation of ***Strategy Pattern***
 
 
 # Maven Commands
